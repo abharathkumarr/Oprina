@@ -1,0 +1,591 @@
+/* DashboardPage.css - Fixed with Sidebar + 50/50 Layout */
+
+/* Main container - Grid with sidebar */
+.dashboard-page {
+  display: grid;
+  grid-template-columns: 260px 1fr; /* Sidebar + Main content */
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--background-alt) 0%, var(--background) 100%);
+}
+
+/* Main Content Area */
+.main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+/* Unified 50/50 Container - Now fits in main content area */
+.dashboard-unified {
+  width: 95%;
+  height: 650px;
+  background-color: var(--background);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px var(--shadow);
+  display: flex;
+  flex-direction: column; /* Changed to column to stack status box above content */
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* Left Side: Avatar + Controls (50%) */
+.avatar-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--background-alt) 0%, var(--background) 100%);
+  border-right: 1px solid var(--border);
+}
+
+.avatar-container-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Clean Voice Controls - Removed all status elements */
+.compact-voice-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+}
+
+/* Voice Button - Using existing button system */
+.voice-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.mic-button {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-teal));
+  color: white;
+}
+
+.mic-button:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(91, 124, 255, 0.4);
+}
+
+.mic-button.active {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  animation: pulse 2s infinite;
+}
+
+.mic-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Volume Control */
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--background-alt);
+  padding: 0.75rem 1rem;
+  border-radius: 2rem;
+  border: 1px solid var(--border);
+}
+
+.volume-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-teal), var(--primary-green));
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.volume-button:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(79, 209, 197, 0.3);
+}
+
+.volume-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* NEW: Audio Control Buttons */
+.audio-control-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.pause-button {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.pause-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.stop-button {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+.stop-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+/* NEW: Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.volume-slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.volume-slider {
+  width: 100px;
+  height: 4px;
+  background-color: var(--border);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-teal), var(--primary-green));
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(79, 209, 197, 0.3);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-teal), var(--primary-green));
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(79, 209, 197, 0.3);
+}
+
+.volume-slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.volume-label {
+  font-size: 0.75rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* Right Side: Conversation (50%) */
+.conversation-section {
+  flex: 1;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animations - Using existing system */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Avatar Status Box - Horizontal status display above avatar area */
+.avatar-status-box {
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+  border-bottom: 1px solid var(--border);
+  margin: 0; /* No margin needed */
+  padding: 1rem 2rem;
+  width: 100%; /* Full width of container */
+  box-sizing: border-box;
+  flex-shrink: 0; /* Don't shrink */
+}
+
+/* The main content area (avatar + conversation) */
+.dashboard-content-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.status-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem; /* Increased gap for horizontal layout */
+  justify-content: flex-start; /* Left-aligned for horizontal flow */
+  font-size: 0.875rem;
+  line-height: 1.4;
+  max-width: 100%;
+  overflow-x: auto; /* Allow horizontal scroll if needed */
+}
+
+.status-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Prevent text wrapping within items */
+  flex-shrink: 0; /* Don't shrink items */
+}
+
+.status-item.streaming {
+  color: var(--primary-blue);
+}
+
+.status-item.quota {
+  color: #f59e0b; /* Orange */
+}
+
+.status-item.connection {
+  color: var(--text);
+}
+
+.status-item.success {
+  color: var(--primary-teal);
+}
+
+.status-item.warning {
+  color: #f59e0b; /* Orange */
+}
+
+.status-item.error {
+  color: #ef4444; /* Red */
+}
+
+.status-item.info {
+  color: var(--primary-blue);
+}
+
+/* Add separators between status items */
+.status-item:not(:last-child)::after {
+  content: "•";
+  margin-left: 1rem;
+  color: var(--border);
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .dashboard-page {
+    grid-template-columns: 1fr; /* Remove sidebar on smaller screens */
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .dashboard-unified {
+    max-width: 100%;
+    height: auto;
+    min-height: 80vh;
+    flex-direction: column;
+  }
+  
+  .avatar-section {
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .conversation-section {
+    flex: 1;
+    min-height: 400px;
+  }
+
+  .dashboard-content-area {
+  flex-direction: column;
+  }
+
+  .avatar-status-box {
+    padding: 0.75rem 1.5rem;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .dashboard-unified {
+    height: auto;
+    min-height: 70vh;
+  }
+  
+  .avatar-section {
+    padding: 1.5rem;
+  }
+  
+  .compact-voice-controls {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .volume-control {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .audio-control-button {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .avatar-status-box {
+  padding: 0.75rem 1rem;
+  }
+
+  .status-content {
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    justify-content: center; /* Center on mobile */
+  }
+
+  .status-item:not(:last-child)::after {
+    margin-left: 0.75rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .volume-slider {
+    width: 80px;
+  }
+  
+  .voice-button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .volume-button {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .dashboard-unified {
+    border-radius: 0.5rem;
+  }
+  
+  .avatar-section {
+    padding: 1rem;
+  }
+
+  .audio-control-button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .avatar-status-box {
+    padding: 0.75rem;
+  }
+
+  .status-content {
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    flex-direction: column; /* Stack vertically on very small screens */
+    align-items: flex-start;
+  }
+
+  .status-item:not(:last-child)::after {
+    display: none; /* Remove separators when stacked */
+  }
+}
+
+.avatar-mode-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 12rem;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.quota-display {
+  font-size: 0.875rem;
+  color: #FB923C; /* Light orange color */
+  font-weight: 500;
+}
+
+.mode-status-box {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-width: 70px;
+}
+
+.mode-status-box:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.mode-label {
+  font-size: 0.875rem;
+  color: var(--heading);
+  font-weight: 500;
+}
+
+.mute-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-teal), var(--primary-green));
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mute-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(79, 209, 197, 0.3);
+}
+
+/* Disabled state for audio control buttons */
+.audio-control-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.audio-control-button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Fix avatar section to properly contain voice controls when status bar is present */
+.avatar-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--background-alt) 0%, var(--background) 100%);
+  border-right: 1px solid var(--border);
+  min-height: 0; /* Allow flexbox to shrink */
+  overflow: hidden; /* Prevent overflow */
+}
+
+/* Ensure avatar container wrapper takes available space properly */
+.avatar-container-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem; /* Reduced from 1.5rem */
+  min-height: 0; /* Allow shrinking */
+}
+
+/* Ensure voice controls stay within bounds */
+.compact-voice-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem; /* Reduced from 1.5rem */
+  background-color: var(--background);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+  margin-top: auto; /* Push to bottom */
+  flex-shrink: 0; /* Don't shrink this */
+}
+
+/* Adjust dashboard-content-area to handle height properly */
+.dashboard-content-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0; /* Important: allows flex children to shrink */
+}

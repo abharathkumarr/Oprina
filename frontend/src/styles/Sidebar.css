@@ -1,0 +1,454 @@
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: var(--background);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.collapse-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  color: var(--text);
+  transition: background-color 0.2s ease;
+}
+
+.collapse-button:hover {
+  background-color: var(--background-alt);
+}
+
+.sidebar-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.new-chat-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--background-alt);
+  border: none;
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.new-chat-button:hover {
+  background-color: var(--border);
+}
+
+.conversations-section {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.7;
+  margin-top: 1.5rem;        /* Add top margin for spacing */
+  margin-bottom: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.conversations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.conversation-item:hover {
+  background-color: var(--background-alt);
+}
+
+.conversation-preview {
+  flex: 1;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conversation-time {
+  font-size: 0.75rem;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.connect-apps-button {
+  width: 100%;
+  justify-content: center;
+}
+
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: var(--background-alt);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-profile:hover {
+  background-color: var(--border);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-email {
+  font-size: 0.75rem;
+  color: var(--text);
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: var(--background-alt);
+}
+
+/* Collapsed state styles */
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed .conversation-preview,
+.sidebar.collapsed .conversation-time,
+.sidebar.collapsed .user-info,
+.sidebar.collapsed .section-title {
+  display: none;
+}
+
+.sidebar.collapsed .conversation-item {
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.sidebar.collapsed .user-profile {
+  justify-content: center;
+}
+
+/* Fix New Chat Button */
+.sidebar.collapsed .new-chat-button {
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+}
+
+.sidebar.collapsed .new-chat-button svg {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed .new-chat-button span {
+  display: none;
+}
+
+/* Fix Connect Apps Button */
+.sidebar.collapsed .connect-apps-button {
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex !important;
+}
+
+.sidebar.collapsed .connect-apps-button svg {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0;
+}
+
+/* General icon sizing for collapsed sidebar */
+.sidebar.collapsed button svg {
+  flex-shrink: 0;
+}
+
+
+/* Ensure the Button component itself centers content when collapsed */
+.sidebar.collapsed .connect-apps-button .button-content {
+  justify-content: center;
+  align-items: center;
+}
+
+/* If your Button component has internal wrapper, target it */
+.sidebar.collapsed .connect-apps-button > * {
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Make sure conversation icons stay visible too */
+.sidebar.collapsed .conversation-icon {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .conversations-section {
+    max-height: 200px;
+  }
+}
+
+.sidebar-header .collapse-button {
+  position: absolute;
+  top: 1rem;
+  right: -14px;
+  background-color: white;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.2s ease;
+}
+
+.sidebar.collapsed .collapse-button {
+  right: -14px;
+}
+
+.sidebar.collapsed button {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.sidebar.collapsed button * {
+  margin: 0 auto;
+}
+
+/* Session title editing styles */
+.session-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.edit-session-button {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  opacity: 0;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conversation-item:hover .edit-session-button {
+  opacity: 0.6;
+}
+
+.edit-session-button:hover {
+  opacity: 1 !important;
+  background-color: var(--background-alt);
+}
+
+.session-title-input {
+  background: var(--background);
+  border: 1px solid var(--primary-blue);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text);
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+}
+
+.session-title-input:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 2px rgba(91, 124, 255, 0.2);
+}
+
+.session-title-text {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Update existing conversation-preview to flex for proper alignment */
+.conversation-preview {
+  flex: 1;
+  font-size: 0.875rem;
+  min-width: 0; /* Allow flex shrinking */
+}
+
+/* Update conversation-details to handle new layout */
+.conversation-details {
+  flex: 1;
+  min-width: 0; /* Allow flex shrinking */
+  overflow: hidden;
+}
+
+/* Ensure conversation-content takes full width */
+.conversation-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0; /* Allow flex shrinking */
+}
+
+/* Update conversation-item to handle new action buttons layout */
+.conversation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Distribute space between content and actions */
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  margin: -0.25rem;
+}
+
+.logo-section:hover {
+  opacity: 0.8;
+  background-color: var(--background-alt);
+}
+
+.logo-section:active {
+  transform: scale(0.98);
+}
