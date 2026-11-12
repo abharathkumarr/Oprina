@@ -200,9 +200,7 @@ def create() -> None:
     for key, value in env_vars.items():
         if value:
             if "SECRET" in key or "KEY" in key:
-                # Mask sensitive values
-                masked_value = value[:8] + "*" * (len(value) - 16) + value[-8:] if len(value) > 16 else "*" * len(value)
-                print(f"✅ {key}: {masked_value}")
+                print(f"✅ {key}: configured (value redacted)")
             else:
                 # Show full value for non-sensitive variables
                 print(f"✅ {key}: {value}")

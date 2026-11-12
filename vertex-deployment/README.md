@@ -327,7 +327,7 @@ python -c "import os; print('Project:', os.getenv('GOOGLE_CLOUD_PROJECT'))"
 ```bash
 # Check Supabase configuration
 echo $SUPABASE_URL
-echo $SUPABASE_KEY
+python -c "import os; print('SUPABASE_KEY is set:', bool(os.getenv('SUPABASE_KEY')))"
 
 # Test database connection
 python -c "
